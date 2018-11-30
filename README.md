@@ -1,5 +1,5 @@
 # The Food Recipe Depot App
-![](https://img.shields.io/badge/version-1.1.0-red.svg)
+![](https://img.shields.io/badge/version-0.0.1-green.svg)
 
 >A food recipe repository application project using .NET Core MVC React framework.
 
