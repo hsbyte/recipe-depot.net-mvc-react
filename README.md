@@ -55,4 +55,4 @@ In the Package Manager Console, add data model migration and update database.
 Object model services library.
 
 
-This project is a work in progress.
+This project is still a work in progress.
