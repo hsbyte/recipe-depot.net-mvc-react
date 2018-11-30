@@ -39,7 +39,7 @@ Pass the lamda function to `services.AddSbContext...`.
 ### RecipeDepotData
 Object relational mapping and data models' library.
 
-![](https://github.com/hsbyte/recipe-depot.net-mvc-react/.md/dbschema.png)
+![](https://github.com/hsbyte/recipe-depot.net-mvc-react/.md/dbschema.jpg)
 
 >RecipeDepotContext.cs
 `
