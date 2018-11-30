@@ -16,7 +16,7 @@ Released under the [MIT licence](http://opensource.org/licenses/MIT).
 Main application library.
 
 >appsettings.json
-Add `ConnectionStrings` to cennect to DB
+Add `ConnectionStrings` to connect to DB
 
 `
   "ConnectionStrings": {
