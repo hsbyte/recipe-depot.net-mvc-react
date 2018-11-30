@@ -8,8 +8,6 @@
 ## License
 Released under the [MIT licence](http://opensource.org/licenses/MIT).
 
-This project is a work in progress.
-
 ## Project Library Files
 >Required NuGet Packages
 * Microsoft.EntityFrameworksCore
@@ -56,3 +54,5 @@ In the Package Manager Console, add data model migration and update database.
 ### RecipeDepotService (up next...)
 Object model services library.
 
+
+This project is a work in progress.
