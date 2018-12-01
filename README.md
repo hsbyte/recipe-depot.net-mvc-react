@@ -70,8 +70,4 @@ Object model services library.
 
 Add reference to `RecipeDepotData` library.
 
-## Hosted
-App is best viewed on mobile devices, and supports Microsoft Edge, Safari and Google Chrome web browsers.
->[https://recipe-app-a.firebaseapp.com](https://recipe-app-a.firebaseapp.com)
-
 This project is still a work in progress.
