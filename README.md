@@ -31,6 +31,7 @@ Object relational mapping and data models' library.
 >}
 >```
 
+![](https://github.com/hsbyte/recipe-depot.net-mvc-react/blob/master/.md/dbschema.jpg)
 
 ### <span style="color:orange">**RecipeDepot**</span>
 
