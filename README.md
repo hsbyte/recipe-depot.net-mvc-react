@@ -23,13 +23,11 @@ Object relational mapping and data models' library.
 
 >`RecipeDepotContext.cs`
 >```c#
+>public class RecipeDepotContext : DbContext
 >{
->    public class RecipeDepotContext : DbContext
->    {
->        public RecipeDepotContext(DbContextOptions options) : base(options) { }
->        public DbSet<Patron> Patrons { get; set; }
->        ...
->    }
+>    public RecipeDepotContext(DbContextOptions options) : base(options) { }
+>    public DbSet<Patron> Patrons { get; set; }
+>    ...
 >}
 >```
 
