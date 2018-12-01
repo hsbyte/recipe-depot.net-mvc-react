@@ -11,14 +11,15 @@
 Released under the [MIT licence](http://opensource.org/licenses/MIT).
 
 ## Project Library Files
-### <span style="color:orange">**RecipeDepotData**</span>
-
-Object relational mapping and data models' library.
 
 NuGet Packages:
 * Microsoft.EntityFrameworksCore
 * Microsoft.EntityFrameworksCore.Tools
 * Microsoft.EntityFrameworksCore.SqlServer
+
+### <span style="color:orange">**RecipeDepotData**</span>
+
+Object relational mapping and data models' library.
 
 >`RecipeDepotContext.cs`
 >```c#
@@ -38,10 +39,6 @@ NuGet Packages:
 Main application library.
 
 Add reference to `RecipeDepotData` library.
-
-NuGet Packages:
-* Microsoft.EntityFrameworksCore
-* Microsoft.EntityFrameworksCore.SqlServer
 
 Add `ConnectionStrings` to cennect to DB
 >`appsettings.json`
