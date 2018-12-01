@@ -49,7 +49,6 @@ Add `ConnectionStrings` to cennect to DB
 Pass the lambda function to `services.AddSbContext...`
 >`Startup.cs`
 >```c#
->...
 >public void ConfigureServices(IServiceCollection services)
 >{
 >	services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
