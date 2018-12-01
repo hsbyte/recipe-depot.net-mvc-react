@@ -54,7 +54,7 @@ Pass the lambda function to `services.AddSbContext...`
 >	services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 >	// Add DbContext service to connect to DB
 >   services.AddDbContext<RecipeDepotContext>( options
->   	=> options.UseSqlServer(Configuration.GetConnectionString(*"RecipeDepotConnection"*)) );
+>   	=> options.UseSqlServer(Configuration.GetConnectionString("RecipeDepotConnection")) );
 >...
 >```
 
