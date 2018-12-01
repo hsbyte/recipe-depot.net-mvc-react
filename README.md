@@ -1,59 +1,97 @@
 # The Food Recipe Depot App
-![](https://img.shields.io/badge/version-0.0.1-green.svg)
+
+![](https://img.shields.io/badge/version-1.1.0-red.svg)
 
 >A food recipe repository application project using .NET Core MVC React framework.
 
 ## Author
 - Arnold Haban
+
 ## License
 Released under the [MIT licence](http://opensource.org/licenses/MIT).
 
 ## Project Library Files
->Required NuGet Packages
-* Microsoft.EntityFrameworksCore
-* Microsoft.EntityFrameworksCore.SqlServer
-### RecipeDepot
-Main application library.
+### <span style="color:orange">**RecipeDepotData**</span>
 
->appsettings.json
-Add `ConnectionStrings` to connect to DB
-
-`
-  "ConnectionStrings": {
-    "RecipeDepotConnection": *"Server=MSSQLDB;Database=RecipeDepot;Trusted_Connection=True;MultipleActiveResultSets=true;"*
-  },
-`
-
->Startup.cs
-Pass the lamda function to `services.AddSbContext...`.
-
-`
-			// Add DbContext service to connect to DB
-            services.AddDbContext<RecipeDepotContext>( options
-                => options.UseSqlServer(Configuration.GetConnectionString(*"RecipeDepotConnection"*)) );
-`
-
-
-### RecipeDepotData
 Object relational mapping and data models' library.
 
-![](https://github.com/hsbyte/recipe-depot.net-mvc-react/blob/master/.md/dbschema.jpg)
+NuGet Packages:
+* Microsoft.EntityFrameworksCore
+* Microsoft.EntityFrameworksCore.Tools
+* Microsoft.EntityFrameworksCore.SqlServer
+
+>`RecipeDepotContext.cs`
+>```c#
+>using Microsoft.EntityFrameworkCore;
+>using RecipeDepotData.Models;
+>namespace RecipeDepotData
+>
+>{
+>    public class RecipeDepotContext : DbContext
+>    {
+>        public RecipeDepotContext(DbContextOptions options) : base(options) { }
+>        public DbSet<Patron> Patrons { get; set; }
+>        ...
+>    }
+>}
+>```
 
 
->RecipeDepotContext.cs
-`
-    public class RecipeDepotContext : DbContext
-    {
-        public RecipeDepotContext(DbContextOptions options) : base(options) { }
-        public DbSet<Patron> Patrons { get; set; }
-        ...
-    }
-`
+### <span style="color:orange">**RecipeDepot**</span>
 
-In the Package Manager Console, add data model migration and update database.
+Main application library.
 
-### RecipeDepotService (up next...)
+Add reference to `RecipeDepotData` library.
+
+NuGet Packages:
+* Microsoft.EntityFrameworksCore
+* Microsoft.EntityFrameworksCore.SqlServer
+
+Add `ConnectionStrings` to cennect to DB
+>`appsettings.json`
+>```json
+>{
+>  "ConnectionStrings": {
+>    "RecipeDepotConnection": "Server=[Your-MMSQL-server];Database=RecipeDepot;Trusted_Connection=True;MultipleActiveResultSets=true;"
+>  },
+>  ...
+>}
+>```
+
+Pass the lamda function to `services.AddSbContext...`
+>`Startup.cs`
+>```c#
+>using ...
+>namespace RecipeDepot
+>{
+>    public class Startup
+>    {
+>		...
+>        public IConfiguration Configuration { get; }
+>        // This method gets called by the runtime. Use this method to add services to the container.
+>        public void ConfigureServices(IServiceCollection services)
+>        {
+>            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+>			// Add DbContext service to connect to DB
+>            services.AddDbContext<RecipeDepotContext>( options
+>                => options.UseSqlServer(Configuration.GetConnectionString(*"RecipeDepotConnection"*)) );
+>...
+>```
+
+#### Database Migration
+In the Package Manager Console, run the following commands to build the database:
+>```bash
+>add-migration "Initial data models migration."
+>update-database
+>```
+
+### <span style="color:orange">**RecipeDepotServices**</span>
 Object model services library.
 
+Add reference to `RecipeDepotData` library.
+
+## Hosted
+App is best viewed on mobile devices, and supports Microsoft Edge, Safari and Google Chrome web browsers.
+>[https://recipe-app-a.firebaseapp.com](https://recipe-app-a.firebaseapp.com)
 
 This project is still a work in progress.
