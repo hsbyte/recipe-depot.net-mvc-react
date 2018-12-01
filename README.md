@@ -22,10 +22,6 @@ NuGet Packages:
 
 >`RecipeDepotContext.cs`
 >```c#
->using Microsoft.EntityFrameworkCore;
->using RecipeDepotData.Models;
->namespace RecipeDepotData
->
 >{
 >    public class RecipeDepotContext : DbContext
 >    {
@@ -50,31 +46,21 @@ NuGet Packages:
 Add `ConnectionStrings` to cennect to DB
 >`appsettings.json`
 >```json
->{
 >  "ConnectionStrings": {
 >    "RecipeDepotConnection": "Server=[Your-MMSQL-server];Database=RecipeDepot;Trusted_Connection=True;MultipleActiveResultSets=true;"
->  },
->  ...
->}
+>  }
 >```
 
-Pass the lamda function to `services.AddSbContext...`
+Pass the lambda function to `services.AddSbContext...`
 >`Startup.cs`
 >```c#
->using ...
->namespace RecipeDepot
+>...
+>public void ConfigureServices(IServiceCollection services)
 >{
->    public class Startup
->    {
->		...
->        public IConfiguration Configuration { get; }
->        // This method gets called by the runtime. Use this method to add services to the container.
->        public void ConfigureServices(IServiceCollection services)
->        {
->            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
->			// Add DbContext service to connect to DB
->            services.AddDbContext<RecipeDepotContext>( options
->                => options.UseSqlServer(Configuration.GetConnectionString(*"RecipeDepotConnection"*)) );
+>	services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+>	// Add DbContext service to connect to DB
+>   services.AddDbContext<RecipeDepotContext>( options
+>   	=> options.UseSqlServer(Configuration.GetConnectionString(*"RecipeDepotConnection"*)) );
 >...
 >```
 
