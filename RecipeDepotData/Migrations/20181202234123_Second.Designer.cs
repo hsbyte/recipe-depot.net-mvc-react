@@ -10,8 +10,8 @@ using RecipeDepotData;
 namespace RecipeDepotData.Migrations
 {
     [DbContext(typeof(RecipeDepotContext))]
-    [Migration("20181202070122_Second data models migration.")]
-    partial class Seconddatamodelsmigration
+    [Migration("20181202234123_Second")]
+    partial class Second
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,43 @@ namespace RecipeDepotData.Migrations
                 .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("RecipeDepotData.Models.Access", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("Active");
+
+                    b.Property<string>("AvatarUrl");
+
+                    b.Property<string>("Bio")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("Created");
+
+                    b.Property<string>("Email")
+                        .IsRequired();
+
+                    b.Property<string>("Facebook");
+
+                    b.Property<string>("Instagram");
+
+                    b.Property<DateTime>("Modified");
+
+                    b.Property<bool>("Online");
+
+                    b.Property<string>("Passwd");
+
+                    b.Property<string>("Pinterest");
+
+                    b.Property<string>("Twitter");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Access");
+                });
 
             modelBuilder.Entity("RecipeDepotData.Models.DishType", b =>
                 {
@@ -72,37 +109,17 @@ namespace RecipeDepotData.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<bool>("Active");
-
-                    b.Property<string>("AvatarUrl");
-
-                    b.Property<string>("Bio")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("Created");
-
-                    b.Property<string>("Email")
-                        .IsRequired();
-
-                    b.Property<string>("Facebook");
+                    b.Property<int?>("AccessId");
 
                     b.Property<string>("FirstName")
                         .IsRequired();
 
-                    b.Property<string>("Instagram");
-
                     b.Property<string>("LastName")
                         .IsRequired();
 
-                    b.Property<DateTime>("Modified");
-
-                    b.Property<bool>("Online");
-
-                    b.Property<string>("Pinterest");
-
-                    b.Property<string>("Twitter");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("AccessId");
 
                     b.ToTable("Patrons");
                 });
@@ -198,17 +215,24 @@ namespace RecipeDepotData.Migrations
                         .HasForeignKey("RecipeId");
                 });
 
+            modelBuilder.Entity("RecipeDepotData.Models.Patron", b =>
+                {
+                    b.HasOne("RecipeDepotData.Models.Access", "Access")
+                        .WithMany()
+                        .HasForeignKey("AccessId");
+                });
+
             modelBuilder.Entity("RecipeDepotData.Models.Recipe", b =>
                 {
                     b.HasOne("RecipeDepotData.Models.Patron", "Patron")
-                        .WithMany("Recipes")
+                        .WithMany()
                         .HasForeignKey("PatronId");
                 });
 
             modelBuilder.Entity("RecipeDepotData.Models.Review", b =>
                 {
-                    b.HasOne("RecipeDepotData.Models.Patron")
-                        .WithMany("Reviews")
+                    b.HasOne("RecipeDepotData.Models.Patron", "Patron")
+                        .WithMany()
                         .HasForeignKey("PatronId");
 
                     b.HasOne("RecipeDepotData.Models.Recipe")

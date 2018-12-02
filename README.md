@@ -17,9 +17,9 @@ NuGet Packages:
 * Microsoft.EntityFrameworksCore.Tools
 * Microsoft.EntityFrameworksCore.SqlServer
 
-### <span style="color:orange">**RecipeDepotData**</span>
+### <span style="color:orange">**RecipeDepotData - Domain Models**</span>
 
-Object relational mapping and data models' library.
+Object relational mapping and data models' library using code first approach.
 
 >`RecipeDepotContext.cs`
 >```c#

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using RecipeDepot.Models.Recipes;
 using RecipeDepotData;
 using RecipeDepotData.Models;
 
@@ -21,13 +22,46 @@ namespace RecipeDepot.Controller
             _context = context;
         }
 
-        // GET: api/Recipes
+       // GET: api/Recipes
         [HttpGet]
-        public IEnumerable<Recipe> GetRecipes()
+        public IEnumerable<RecipeIndexListModel> GetRecipes()
+        {
+            return GetAllRecipeAssets(_context.Recipes
+                    .Include(asset => asset.Patron)
+                    .Include(asset => asset.Ingredients)
+                    .Include(asset => asset.Reviews)
+                        .ThenInclude(asset => asset.Patron));
+        }
+
+        private IEnumerable<RecipeIndexListModel> GetAllRecipeAssets(IEnumerable<Recipe> assetModels)
+        {
+            return assetModels
+                .Select(asset => new RecipeIndexListModel
+                {
+                    Id = asset.Id,
+                    Shared = asset.Shared,
+                    Title = asset.Title,
+                    Description = asset.Description,
+                    Steps = asset.Steps,
+                    ImageUrl = asset.ImageUrl,
+                    CookTime = asset.CookTime,
+                    PrepTime = asset.PrepTime,
+                    DishType = asset.DishType,
+                    MainIngredient = asset.MainIngredient,
+                    Seasons = asset.Seasons,
+                    Name = asset.Patron.FirstName + ' ' + asset.Patron.LastName,
+                    Ingredients = asset.Ingredients,
+                    Reviews = asset.Reviews
+                });
+        }
+
+        private IEnumerable<Recipe> GetAll()
         {
             return _context.Recipes
+                    .Include(asset => asset.Patron)
                     .Include(asset => asset.Ingredients)
-                    .Include(asset => asset.Reviews);
+                    .Include(asset => asset.Reviews)
+                        .ThenInclude(asset => asset.Patron);
         }
 
         // GET: api/Recipes/5
@@ -40,9 +74,12 @@ namespace RecipeDepot.Controller
             }
 
             //var recipe = await _context.Recipes.FindAsync(id);
-
-            var recipe = GetRecipes()
-                        .FirstOrDefault(asset => asset.Id == id);
+            var recipe = await _context.Recipes
+                        .Include(asset => asset.Patron)
+                        .Include(asset => asset.Ingredients)
+                        .Include(asset => asset.Reviews)
+                            .ThenInclude(asset => asset.Patron)
+                        .FirstOrDefaultAsync(asset => asset.Id == id);
 
             if (recipe == null)
             {

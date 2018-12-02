@@ -7,7 +7,7 @@ namespace RecipeDepotData.Models
 {
     public class Recipe : DateAsset
     {
-        public int Id { get; set; }
+        public int Id { get; private set; }
         public bool Shared { get; set; }
 
         [Required]
@@ -35,7 +35,7 @@ namespace RecipeDepotData.Models
         public string Seasons { get; set; }
 
         public Patron Patron { get; set; }
-        public virtual IEnumerable<Ingredient> Ingredients { get; set; }
-        public virtual IEnumerable<Review> Reviews { get; set; }
+        public virtual ICollection<Ingredient> Ingredients { get; set; }
+        public virtual ICollection<Review> Reviews { get; set; }
     }
 }
