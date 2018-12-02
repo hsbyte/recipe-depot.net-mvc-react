@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RecipeDepotData.Migrations
 {
-    public partial class Initialdatamodelmigration : Migration
+    public partial class Initialdatamodelsmigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -38,6 +38,8 @@ namespace RecipeDepotData.Migrations
                 name: "Patrons",
                 columns: table => new
                 {
+                    Created = table.Column<DateTime>(nullable: false),
+                    Modified = table.Column<DateTime>(nullable: false),
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     FirstName = table.Column<string>(nullable: false),
@@ -50,9 +52,7 @@ namespace RecipeDepotData.Migrations
                     Facebook = table.Column<string>(nullable: true),
                     Twitter = table.Column<string>(nullable: true),
                     Pinterest = table.Column<string>(nullable: true),
-                    Instagram = table.Column<string>(nullable: true),
-                    Joined = table.Column<DateTime>(nullable: false),
-                    Modified = table.Column<DateTime>(nullable: false)
+                    Instagram = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -76,20 +76,20 @@ namespace RecipeDepotData.Migrations
                 name: "Recipes",
                 columns: table => new
                 {
+                    Created = table.Column<DateTime>(nullable: false),
+                    Modified = table.Column<DateTime>(nullable: false),
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Shared = table.Column<bool>(nullable: false),
                     Title = table.Column<string>(nullable: false),
                     Description = table.Column<string>(type: "text", nullable: true),
-                    Preparation = table.Column<string>(type: "text", nullable: true),
+                    Steps = table.Column<string>(type: "text", nullable: true),
                     ImageUrl = table.Column<string>(nullable: true),
                     CookTime = table.Column<int>(nullable: false),
                     PrepTime = table.Column<int>(nullable: false),
                     DishType = table.Column<string>(nullable: true),
                     MainIngredient = table.Column<string>(nullable: true),
                     Seasons = table.Column<string>(nullable: true),
-                    Created = table.Column<DateTime>(nullable: false),
-                    Modified = table.Column<DateTime>(nullable: false),
                     PatronId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -110,8 +110,6 @@ namespace RecipeDepotData.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Description = table.Column<string>(nullable: true),
-                    Quantity = table.Column<int>(nullable: false),
-                    Unit = table.Column<string>(nullable: true),
                     RecipeId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -129,12 +127,12 @@ namespace RecipeDepotData.Migrations
                 name: "Reviews",
                 columns: table => new
                 {
+                    Created = table.Column<DateTime>(nullable: false),
+                    Modified = table.Column<DateTime>(nullable: false),
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Comment = table.Column<string>(type: "text", nullable: true),
                     Rating = table.Column<int>(nullable: false),
-                    Posted = table.Column<DateTime>(nullable: false),
-                    Modified = table.Column<DateTime>(nullable: false),
                     PatronId = table.Column<int>(nullable: true),
                     RecipeId = table.Column<int>(nullable: true)
                 },

@@ -10,8 +10,8 @@ using RecipeDepotData;
 namespace RecipeDepotData.Migrations
 {
     [DbContext(typeof(RecipeDepotContext))]
-    [Migration("20181129200934_Initial data model migration")]
-    partial class Initialdatamodelmigration
+    [Migration("20181202070122_Second data models migration.")]
+    partial class Seconddatamodelsmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -43,11 +43,7 @@ namespace RecipeDepotData.Migrations
 
                     b.Property<string>("Description");
 
-                    b.Property<int>("Quantity");
-
                     b.Property<int?>("RecipeId");
-
-                    b.Property<string>("Unit");
 
                     b.HasKey("Id");
 
@@ -83,6 +79,8 @@ namespace RecipeDepotData.Migrations
                     b.Property<string>("Bio")
                         .HasColumnType("text");
 
+                    b.Property<DateTime>("Created");
+
                     b.Property<string>("Email")
                         .IsRequired();
 
@@ -92,8 +90,6 @@ namespace RecipeDepotData.Migrations
                         .IsRequired();
 
                     b.Property<string>("Instagram");
-
-                    b.Property<DateTime>("Joined");
 
                     b.Property<string>("LastName")
                         .IsRequired();
@@ -136,12 +132,12 @@ namespace RecipeDepotData.Migrations
 
                     b.Property<int>("PrepTime");
 
-                    b.Property<string>("Preparation")
-                        .HasColumnType("text");
-
                     b.Property<string>("Seasons");
 
                     b.Property<bool>("Shared");
+
+                    b.Property<string>("Steps")
+                        .HasColumnType("text");
 
                     b.Property<string>("Title")
                         .IsRequired();
@@ -162,11 +158,11 @@ namespace RecipeDepotData.Migrations
                     b.Property<string>("Comment")
                         .HasColumnType("text");
 
+                    b.Property<DateTime>("Created");
+
                     b.Property<DateTime>("Modified");
 
                     b.Property<int?>("PatronId");
-
-                    b.Property<DateTime>("Posted");
 
                     b.Property<int>("Rating");
 
@@ -204,7 +200,7 @@ namespace RecipeDepotData.Migrations
 
             modelBuilder.Entity("RecipeDepotData.Models.Recipe", b =>
                 {
-                    b.HasOne("RecipeDepotData.Models.Patron")
+                    b.HasOne("RecipeDepotData.Models.Patron", "Patron")
                         .WithMany("Recipes")
                         .HasForeignKey("PatronId");
                 });

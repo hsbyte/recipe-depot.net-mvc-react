@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RecipeDepotData.Models
 {
-    public class Patron
+    public class Patron : DateAsset
     {
         public int Id { get; set; }
 
@@ -30,12 +30,7 @@ namespace RecipeDepotData.Models
         public string Pinterest { get; set; }
         public string Instagram { get; set; }
 
-        [Required]
-        public DateTime Joined { get; set; }
-
-        public DateTime Modified { get; set; }
-
-        public IEnumerable<Recipe> Recipes { get; set; }
-        public IEnumerable<Review> Reviews { get; set; }
+        public virtual IEnumerable<Recipe> Recipes { get; set; }
+        public virtual IEnumerable<Review> Reviews { get; set; }
     }
 }

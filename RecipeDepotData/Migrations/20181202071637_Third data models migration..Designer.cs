@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RecipeDepotData;
 
 namespace RecipeDepotData.Migrations
 {
     [DbContext(typeof(RecipeDepotContext))]
-    partial class RecipeDepotContextModelSnapshot : ModelSnapshot
+    [Migration("20181202071637_Third data models migration.")]
+    partial class Thirddatamodelsmigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace RecipeDepotData.Models
 {
-    public class Review
+    public class Review : DateAsset
     {
         public int Id { get; set; }
 
@@ -15,10 +15,5 @@ namespace RecipeDepotData.Models
         public string Comment { get; set; }
 
         public int Rating { get; set; }
-
-        [Required]
-        public DateTime Posted { get; set; }
-
-        public DateTime Modified { get; set; }
     }
 }
