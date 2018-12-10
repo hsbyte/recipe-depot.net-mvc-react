@@ -85,7 +85,7 @@ Client view containers.
 >```
 
 ### <span style="color:orange">**React: Components**</span>
-Client view containers.
+Client view components.
 >```bash
 >ChildRoute.jsx -> passing of props to other routes component
 >SubmitButton.jsx -> Customized submit button component
