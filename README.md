@@ -105,6 +105,6 @@ Client view components.
 
 ![](https://github.com/hsbyte/recipe-depot.net-mvc-react/blob/master/.md/view-screenshoot-2.jpg)
 
-**Note**: *Shown are postings of dummy recipes and information for demonstration purpose.*
+**Note**: *Shown are postings of dummy recipes and information for demonstration purpose. Database and food images not included in this repo.*
 
 This project is still a work in progress.
