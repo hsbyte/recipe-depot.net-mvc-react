@@ -1,0 +1,39 @@
+﻿.App {
+	margin-top: 15px;
+}
+	.App .navbar-brand {
+		font-weight: bold;
+	}
+	.App .navbar {
+		z-index: 1010;
+	}
+
+.Login,
+.Signup {
+	padding: 60px 0;
+	background-color: rgba(255,255,255,.9);
+	width: 80%;
+	max-width: 500px;
+	margin: auto;
+	margin-top: 10vh;
+	border-radius: 15px;
+	vertical-align: middle;
+	text-align: center;
+}
+	.Login form,
+	.Signup form {
+		margin: 0 auto;
+		max-width: 450px;
+		width: 70%;
+	}
+	.Login img,
+	.Signup img {
+		width: 70%;
+		max-width: 180px;
+	}
+
+.RecipeBoard {
+	background-color: rgba(255,255,255,.9);
+	padding: 30px;
+	width: 100%;
+}

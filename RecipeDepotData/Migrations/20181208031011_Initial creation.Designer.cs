@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RecipeDepotData;
 
 namespace RecipeDepotData.Migrations
 {
     [DbContext(typeof(RecipeDepotContext))]
-    partial class RecipeDepotContextModelSnapshot : ModelSnapshot
+    [Migration("20181208031011_Initial creation")]
+    partial class Initialcreation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,6 +28,8 @@ namespace RecipeDepotData.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("Active");
+
+                    b.Property<string>("AvatarUrl");
 
                     b.Property<string>("Bio")
                         .HasColumnType("text");
@@ -110,8 +114,6 @@ namespace RecipeDepotData.Migrations
                         .ValueGeneratedOnAdd()
                         .HasMaxLength(50);
 
-                    b.Property<string>("AvatarUrl");
-
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasMaxLength(30);
@@ -181,10 +183,9 @@ namespace RecipeDepotData.Migrations
 
                     b.Property<DateTime>("Created");
 
-                    b.Property<string>("Email")
-                        .IsRequired();
-
                     b.Property<DateTime>("Modified");
+
+                    b.Property<string>("PatronEmail");
 
                     b.Property<int>("Rating");
 
@@ -192,7 +193,7 @@ namespace RecipeDepotData.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Email");
+                    b.HasIndex("PatronEmail");
 
                     b.HasIndex("RecipeId");
 
@@ -239,8 +240,7 @@ namespace RecipeDepotData.Migrations
                 {
                     b.HasOne("RecipeDepotData.Models.Patron", "Patron")
                         .WithMany()
-                        .HasForeignKey("Email")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("PatronEmail");
 
                     b.HasOne("RecipeDepotData.Models.Recipe")
                         .WithMany("Reviews")

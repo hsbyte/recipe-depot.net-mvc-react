@@ -1,0 +1,15 @@
+﻿.RecipeBoard {
+}
+
+	.RecipeBoard .col-padding {
+			padding: 5px;
+		}
+
+	.RecipeBoard .img-thumbnail {
+		padding: 0;
+		box-shadow: none;
+	}
+
+	.RecipeBoard .action {
+		cursor: pointer;
+	}

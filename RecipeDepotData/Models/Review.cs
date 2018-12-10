@@ -1,21 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace RecipeDepotData.Models
 {
-    public class Review : DateAsset
-    {
-        public int Id { get; private set; }
+  public class Review : DateAsset
+  {
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int Id { get; private set; }
 
-        [Column(TypeName = "text")]
-        [MaxLength]
-        public string Comment { get; set; }
+    [Required]
+    [ForeignKey("Recipe")]
+    public int RecipeId { get; set; }
 
-        public int Rating { get; set; }
+    [Required]
+    [ForeignKey("Patron")]
+    public string Email { get; set; }
 
-        public virtual Patron Patron { get; set; }
-    }
+    [Column(TypeName = "text")]
+    [MaxLength]
+    public string Comment { get; set; }
+
+    [Range(0, 5)]
+    public int Rating { get; set; }
+
+    public Patron Patron { get; set; }
+  }
 }

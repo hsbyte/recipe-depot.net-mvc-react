@@ -1,0 +1,15 @@
+﻿
+:root {
+	--azure: rgb(0, 128, 255);
+	--thunderbird: rgb(183, 27,16);
+	--varden: rgb(255, 248, 220);
+}
+
+html,
+body {
+	margin: 0;
+	height: 100%;
+	overflow-x: hidden;
+	background: url("splash.svg") no-repeat center top fixed;
+	background-size: cover;
+}

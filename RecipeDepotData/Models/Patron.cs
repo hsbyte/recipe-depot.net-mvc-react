@@ -3,16 +3,23 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RecipeDepotData.Models
 {
-    public class Patron
-    {
-        public int Id { get; private set; }
+  public class Patron
+  {
+    [Key]
+    [Required]
+    [MaxLength(50)]
+    public string Email { get; set; }
 
-        [Required]
-        public string FirstName { get; set; }
+    public string AvatarUrl { get; set; }
 
-        [Required]
-        public string LastName { get; set; }
+    [Required]
+    [MaxLength(30)]
+    public string FirstName { get; set; }
 
-        public virtual Access Access { get; set; }
-    }
+    [Required]
+    [MaxLength(30)]
+    public string LastName { get; set; }
+
+    public Access Access { get; set; }
+  }
 }

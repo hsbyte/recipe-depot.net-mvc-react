@@ -1,0 +1,56 @@
+﻿.RecipeBoard {
+}
+	.RecipeBoard .star-rating {
+		font-size: large;
+		color: var(--thunderbird);
+		line-height: 1;
+	}
+
+.author {
+  display: flex;
+  align-items: center;
+}
+  .author img {
+    width: 100px;
+    padding: 10px;
+  }
+	.author .star-rating {
+		font-size: xx-large;
+	}
+
+.ingredients,
+.steps,
+.reviews {
+	padding-left: 10px;
+}
+	.ingredients h3,
+	.steps h3,
+	.reviews h3 {
+		background-color: var(--varden);
+		padding: 10px;
+	}
+
+	.reviews img {
+		width: 30px;
+	}
+
+.handle-form {
+	border: none;
+	padding: 0;
+	box-shadow: none;
+	color: black;
+}
+	.form-control[disabled],
+	fieldset[disabled] {
+		cursor: default;
+		background-color: none;
+	}
+
+.rating {
+	display: flex;
+	align-items: center;
+}
+	.rating .radio-button {
+		width: 60px;
+	}
+

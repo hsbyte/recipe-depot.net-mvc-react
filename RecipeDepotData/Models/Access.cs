@@ -1,19 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace RecipeDepotData.Models
 {
     public class Access : DateAsset
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; private set; }
 
-        public string Passwd { get; private set; }
+        [ForeignKey("Patron")]
+        [MaxLength(50)]
+        public string Email { get; set; }
 
         [Required]
-        public string Email { get; set; }
+        public string Passwd { get; set; }
 
         [Column(TypeName = "text")]
         [MaxLength]
@@ -21,7 +23,6 @@ namespace RecipeDepotData.Models
 
         public bool Active { get; set; }
         public bool Online { get; set; }
-        public string AvatarUrl { get; set; }
         public string Facebook { get; set; }
         public string Twitter { get; set; }
         public string Pinterest { get; set; }

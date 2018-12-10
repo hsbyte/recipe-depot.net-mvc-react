@@ -10,8 +10,8 @@ using RecipeDepotData;
 namespace RecipeDepotData.Migrations
 {
     [DbContext(typeof(RecipeDepotContext))]
-    [Migration("20181202234123_Second")]
-    partial class Second
+    [Migration("20181208031622_Initial update")]
+    partial class Initialupdate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -37,7 +37,7 @@ namespace RecipeDepotData.Migrations
                     b.Property<DateTime>("Created");
 
                     b.Property<string>("Email")
-                        .IsRequired();
+                        .HasMaxLength(50);
 
                     b.Property<string>("Facebook");
 
@@ -47,13 +47,18 @@ namespace RecipeDepotData.Migrations
 
                     b.Property<bool>("Online");
 
-                    b.Property<string>("Passwd");
+                    b.Property<string>("Passwd")
+                        .IsRequired();
 
                     b.Property<string>("Pinterest");
 
                     b.Property<string>("Twitter");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique()
+                        .HasFilter("[Email] IS NOT NULL");
 
                     b.ToTable("Access");
                 });
@@ -80,7 +85,7 @@ namespace RecipeDepotData.Migrations
 
                     b.Property<string>("Description");
 
-                    b.Property<int?>("RecipeId");
+                    b.Property<int>("RecipeId");
 
                     b.HasKey("Id");
 
@@ -105,28 +110,26 @@ namespace RecipeDepotData.Migrations
 
             modelBuilder.Entity("RecipeDepotData.Models.Patron", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<string>("Email")
                         .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("AccessId");
+                        .HasMaxLength(50);
 
                     b.Property<string>("FirstName")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasMaxLength(30);
 
                     b.Property<string>("LastName")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasMaxLength(30);
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("AccessId");
+                    b.HasKey("Email");
 
                     b.ToTable("Patrons");
                 });
 
             modelBuilder.Entity("RecipeDepotData.Models.Recipe", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("RecipeId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -137,19 +140,22 @@ namespace RecipeDepotData.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
-                    b.Property<string>("DishType");
+                    b.Property<string>("DishType")
+                        .HasMaxLength(25);
 
                     b.Property<string>("ImageUrl");
 
-                    b.Property<string>("MainIngredient");
+                    b.Property<string>("MainIngredient")
+                        .HasMaxLength(25);
 
                     b.Property<DateTime>("Modified");
 
-                    b.Property<int?>("PatronId");
+                    b.Property<string>("PatronEmail");
 
                     b.Property<int>("PrepTime");
 
-                    b.Property<string>("Seasons");
+                    b.Property<string>("Seasons")
+                        .HasMaxLength(25);
 
                     b.Property<bool>("Shared");
 
@@ -159,9 +165,9 @@ namespace RecipeDepotData.Migrations
                     b.Property<string>("Title")
                         .IsRequired();
 
-                    b.HasKey("Id");
+                    b.HasKey("RecipeId");
 
-                    b.HasIndex("PatronId");
+                    b.HasIndex("PatronEmail");
 
                     b.ToTable("Recipes");
                 });
@@ -177,17 +183,18 @@ namespace RecipeDepotData.Migrations
 
                     b.Property<DateTime>("Created");
 
-                    b.Property<DateTime>("Modified");
+                    b.Property<string>("Email")
+                        .IsRequired();
 
-                    b.Property<int?>("PatronId");
+                    b.Property<DateTime>("Modified");
 
                     b.Property<int>("Rating");
 
-                    b.Property<int?>("RecipeId");
+                    b.Property<int>("RecipeId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PatronId");
+                    b.HasIndex("Email");
 
                     b.HasIndex("RecipeId");
 
@@ -208,36 +215,39 @@ namespace RecipeDepotData.Migrations
                     b.ToTable("Seasons");
                 });
 
+            modelBuilder.Entity("RecipeDepotData.Models.Access", b =>
+                {
+                    b.HasOne("RecipeDepotData.Models.Patron")
+                        .WithOne("Access")
+                        .HasForeignKey("RecipeDepotData.Models.Access", "Email");
+                });
+
             modelBuilder.Entity("RecipeDepotData.Models.Ingredient", b =>
                 {
                     b.HasOne("RecipeDepotData.Models.Recipe")
                         .WithMany("Ingredients")
-                        .HasForeignKey("RecipeId");
-                });
-
-            modelBuilder.Entity("RecipeDepotData.Models.Patron", b =>
-                {
-                    b.HasOne("RecipeDepotData.Models.Access", "Access")
-                        .WithMany()
-                        .HasForeignKey("AccessId");
+                        .HasForeignKey("RecipeId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("RecipeDepotData.Models.Recipe", b =>
                 {
                     b.HasOne("RecipeDepotData.Models.Patron", "Patron")
                         .WithMany()
-                        .HasForeignKey("PatronId");
+                        .HasForeignKey("PatronEmail");
                 });
 
             modelBuilder.Entity("RecipeDepotData.Models.Review", b =>
                 {
                     b.HasOne("RecipeDepotData.Models.Patron", "Patron")
                         .WithMany()
-                        .HasForeignKey("PatronId");
+                        .HasForeignKey("Email")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("RecipeDepotData.Models.Recipe")
                         .WithMany("Reviews")
-                        .HasForeignKey("RecipeId");
+                        .HasForeignKey("RecipeId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

@@ -1,6 +1,6 @@
 # The Food Recipe Depot App
 
-![](https://img.shields.io/badge/version-0.0.1-red.svg)
+![](https://img.shields.io/badge/version-0.1.0-blue.svg)
 
 >A food recipe repository application project using .NET Core MVC React framework.
 
@@ -66,9 +66,29 @@ In the Package Manager Console, run the following commands to build the database
 >update-database
 >```
 
-### <span style="color:orange">**RecipeDepotServices**</span>
-Object model services library.
+### <span style="color:orange">**Controllers**</span>
+Object controllers.
+>```bash
+>RecipesController.cs
+>PatronsController.cs
+>```
 
-Add reference to `RecipeDepotData` library.
+### <span style="color:orange">**React: Containers**</span>
+Client view containers.
+>```bash
+>Home.jsx
+>Login.jsx
+>Signup.jsx
+>FetchRecipe.jsx
+>HandlerRecipe.jsx
+>404.jsx -> Not Found Error container
+>```
+
+### <span style="color:orange">**React: Components**</span>
+Client view containers.
+>```bash
+>ChildRoute.jsx -> passing of props to other routes component
+>SubmitButton.jsx -> Customized submit button component
+>```
 
 This project is still a work in progress.
