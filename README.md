@@ -93,14 +93,18 @@ Client view components.
 
 ### <span style="color:orange">Some Screenshots</span>
 
-Patron log in and sign up
+#### Patron log in and sign up
+
 ![](https://github.com/hsbyte/recipe-depot.net-mvc-react/blob/master/.md/view-screenshoot.jpg)
 
-Recipe gallery
+### Recipe gallery
+
 ![](https://github.com/hsbyte/recipe-depot.net-mvc-react/blob/master/.md/view-screenshoot-1.jpg)
 
-Recipe detail
+### Recipe detail
+
 ![](https://github.com/hsbyte/recipe-depot.net-mvc-react/blob/master/.md/view-screenshoot-2.jpg)
 
+**Note**: *Shown are postings of dummy recipes and information for demonstration purpose.*
 
 This project is still a work in progress.
