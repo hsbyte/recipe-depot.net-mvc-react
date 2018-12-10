@@ -91,7 +91,7 @@ Client view components.
 >SubmitButton.jsx -> Customized submit button component
 >```
 
-### <span style="color:orange">Some Screenshoots</span>
+### <span style="color:orange">Some Screenshots</span>
 
 Patron log in and sign up
 ![](https://github.com/hsbyte/recipe-depot.net-mvc-react/blob/master/.md/view-screenshoot.jpg)
