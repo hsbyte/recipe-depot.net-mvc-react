@@ -2,7 +2,8 @@
 
 ![](https://img.shields.io/badge/version-0.1.0-blue.svg)
 
->A food recipe repository application project using .NET Core MVC React framework.
+>A food recipe repository single page web application project using .NET Core MVC C# React-Bootstrap framework.
+>.NET Course project for ComIT and Manitoba Start.
 
 ## Author
 - Arnold Haban
@@ -71,6 +72,7 @@ Object controllers.
 >```bash
 >RecipesController.cs
 >PatronsController.cs
+>...and more
 >```
 
 ### <span style="color:orange">**React: Containers**</span>
@@ -82,13 +84,15 @@ Client view containers.
 >FetchRecipe.jsx
 >HandlerRecipe.jsx
 >404.jsx -> Not Found Error container
+>...and more
 >```
 
 ### <span style="color:orange">**React: Components**</span>
 Client view components.
 >```bash
 >ChildRoute.jsx -> passing of props to other routes component
->SubmitButton.jsx -> Customized submit button component
+>SubmitButton.jsx -> customized submit button component
+>...and more
 >```
 
 ### <span style="color:orange">Some Screenshots</span>
@@ -97,14 +101,10 @@ Client view components.
 
 ![](https://github.com/hsbyte/recipe-depot.net-mvc-react/blob/master/.md/view-screenshoot.jpg)
 
-### Recipe gallery
 
 ![](https://github.com/hsbyte/recipe-depot.net-mvc-react/blob/master/.md/view-screenshoot-1.jpg)
 
-### Recipe detail
 
-![](https://github.com/hsbyte/recipe-depot.net-mvc-react/blob/master/.md/view-screenshoot-2.jpg)
-
-**Note**: *Shown are postings of dummy recipes and information for demonstration purpose. Database and food images not included in this repo.*
+**Note**: *Shown are postings of dummy recipes, images and information for demonstration purpose. Database and food images not included in this repo.*
 
 This project is still a work in progress.
