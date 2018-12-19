@@ -2,7 +2,7 @@
 
 ![](https://img.shields.io/badge/version-1.0.0-green.svg)
 
->A food recipe repository single CRUD page web application project using .NET Core MVC React-Bootstrap framework. Using C# language for backend and API HTTP services, and React-Bootstrap for frontend dev.
+>A food recipe repository single page CRUD web application project using .NET Core MVC React-Bootstrap framework. Using C# language for backend and API HTTP services, and React-Bootstrap for frontend dev.
 >This simple CRUD website is a .NET Course project for ComIT and Manitoba Start.
 
 ## Author
