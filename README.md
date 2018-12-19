@@ -105,8 +105,8 @@ Client view components.
 ![](https://github.com/hsbyte/recipe-depot.net-mvc-react/blob/master/.md/view-screenshot-1.jpg)
 
 #### <span style="color:green">HTTP RESTful services and endpoints</span>
-*<span style="color:orange">[web-url]/api/Recipes</span> -> JSON format GET request for all recipes.
-*<span style="color:orange">[web-url]/api/Recipes/[Recipe Id]</span> -> JSON format GET request for a specific recipe.
+*`[web-url]/api/Recipes` -> JSON format GET request for all recipes.
+*`[web-url]/api/Recipes/` -> JSON format GET request for a specific recipe.
 ...and more
 
 **Note**: *Shown are postings of dummy recipes, images and information for demonstration purpose. Database and food images not included in this repo.*
