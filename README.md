@@ -113,4 +113,4 @@ Client view components.
 ...and more
 ~~~
 
-**Note**: *Shown are postings of dummy recipes, images and information for demonstration purpose. Database and food images not included in this repo.*
+**Note**: *Shown are postings of dummy recipes, images and information for demonstration purpose. Database file and food images are not included in this repo. To build the database, use the RecipeDepotData code-first EF.*
