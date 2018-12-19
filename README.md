@@ -1,9 +1,9 @@
 # The Food Recipe Depot App
 
-![](https://img.shields.io/badge/version-0.1.0-blue.svg)
+![](https://img.shields.io/badge/version-1.0.0-green.svg)
 
->A food recipe repository single page web application project using .NET Core MVC C# React-Bootstrap framework.
->.NET Course project for ComIT and Manitoba Start.
+>A food recipe repository single CRUD page web application project using .NET Core MVC React-Bootstrap framework. Using C# language for backend and API HTTP services, and React-Bootstrap for frontend dev.
+>This simple CRUD website is a .NET Course project for ComIT and Manitoba Start.
 
 ## Author
 - Arnold Haban
@@ -18,7 +18,7 @@ NuGet Packages:
 * Microsoft.EntityFrameworksCore.Tools
 * Microsoft.EntityFrameworksCore.SqlServer
 
-### <span style="color:orange">**RecipeDepotData - Domain Models**</span>
+### <span style="color:green">**RecipeDepotData - Domain Models**</span>
 
 Object relational mapping and data models' library using code first approach.
 
@@ -34,7 +34,7 @@ Object relational mapping and data models' library using code first approach.
 
 ![](https://github.com/hsbyte/recipe-depot.net-mvc-react/blob/master/.md/dbschema.jpg)
 
-### <span style="color:orange">**RecipeDepot**</span>
+### <span style="color:greene">**RecipeDepot**</span>
 
 Main application library.
 
@@ -67,7 +67,7 @@ In the Package Manager Console, run the following commands to build the database
 >update-database
 >```
 
-### <span style="color:orange">**Controllers**</span>
+### <span style="color:green">**Controllers**</span>
 Object controllers.
 >```bash
 >RecipesController.cs
@@ -75,7 +75,7 @@ Object controllers.
 >...and more
 >```
 
-### <span style="color:orange">**React: Containers**</span>
+### <span style="color:green">**React: Containers**</span>
 Client view containers.
 >```bash
 >Home.jsx
@@ -87,7 +87,7 @@ Client view containers.
 >...and more
 >```
 
-### <span style="color:orange">**React: Components**</span>
+### <span style="color:green">**React: Components**</span>
 Client view components.
 >```bash
 >ChildRoute.jsx -> passing of props to other routes component
@@ -95,16 +95,19 @@ Client view components.
 >...and more
 >```
 
-### <span style="color:orange">Some Screenshots</span>
+### <span style="color:green">Some Screenshots</span>
 
-#### Patron log in and sign up
+#### Screenshots
 
-![](https://github.com/hsbyte/recipe-depot.net-mvc-react/blob/master/.md/view-screenshoot.jpg)
+![](https://github.com/hsbyte/recipe-depot.net-mvc-react/blob/master/.md/view-screenshot.jpg)
 
 
-![](https://github.com/hsbyte/recipe-depot.net-mvc-react/blob/master/.md/view-screenshoot-1.jpg)
+![](https://github.com/hsbyte/recipe-depot.net-mvc-react/blob/master/.md/view-screenshot-1.jpg)
 
+#### <span style="color:green">HTTP RESTful services and endpoints</span>
+
+<span style="color:orange">[web-url]/api/Recipes</span> -> JSON format GET request for all recipes.<br />
+<span style="color:orange">[web-url]/api/Recipes/[Recipe Id]</span> -> JSON format GET request for a specific recipe.
+...and more
 
 **Note**: *Shown are postings of dummy recipes, images and information for demonstration purpose. Database and food images not included in this repo.*
-
-This project is still a work in progress.
