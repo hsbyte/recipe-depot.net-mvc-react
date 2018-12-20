@@ -1,0 +1,17 @@
+﻿.Loading .spinning.glyphicon {
+	font-size: 50px;
+	animation: spin 1s infinite linear;
+}
+	.Loading p {
+		font-size: 20px;
+	}
+
+@keyframes spin {
+	from {
+		transform: scale(1) rotate(0deg);
+	}
+
+	to {
+		transform: scale(1) rotate(360deg);
+	}
+}

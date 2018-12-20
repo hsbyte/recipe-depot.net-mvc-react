@@ -1,12 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RecipeDepotData.Models
 {
-    public abstract class DateAsset
-    {
-        public DateTime Created { get; set; }
-        public DateTime Modified { get; set; }
-    }
+	public abstract class DateAsset
+	{
+		[Column(TypeName = "Date")]
+		public DateTime Created { get; set; }
+
+		[Column(TypeName = "Date")]
+		public DateTime Modified { get; set; }
+
+		public DateAsset()
+		{
+			Created = DateTime.UtcNow;
+			Modified = DateTime.UtcNow;
+		}
+	}
 }

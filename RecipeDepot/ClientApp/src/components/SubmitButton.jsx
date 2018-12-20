@@ -15,6 +15,6 @@ export default ({
 		className={`SubmitButton ${className}`}
 		disabled={disabled || isLoading}
 		{...props} >
-		{isLoading && <Glyphicon glyph="refresh" className="spinning" />}
+		{isLoading && <Glyphicon glyph="repeat" className="spinning" />}
 		{!isLoading ? text : loadingText}
 	</Button>;

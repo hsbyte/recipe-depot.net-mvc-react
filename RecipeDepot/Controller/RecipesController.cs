@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -10,13 +9,13 @@ using RecipeDepotData.Models;
 
 namespace RecipeDepot.Controller
 {
-  [Route("api/[controller]")]
+	[Route("api/[controller]")]
   [ApiController]
   public class RecipesController : ControllerBase
   {
     private readonly RecipeDepotContext _context;
 
-    public RecipesController(RecipeDepotContext context)
+		public RecipesController(RecipeDepotContext context)
     {
       _context = context;
     }
@@ -25,64 +24,56 @@ namespace RecipeDepot.Controller
     [HttpGet]
     public IEnumerable<RecipeIndexItemModel> GetRecipes()
     {
-      return GetRecipeAssets(_context.Recipes
-              .Include(asset => asset.Patron)
-              .Include(asset => asset.Ingredients)
-              .Include(asset => asset.Reviews)
-                  .ThenInclude(asset => asset.Patron));
-    }
 
-		// View model: Customized
-    private IEnumerable<RecipeIndexItemModel> GetRecipeAssets(IEnumerable<Recipe> assetModels)
-    {
-      return assetModels
-        .Select(asset => new RecipeIndexItemModel
-        {
-          Id = asset.RecipeId,
-          Shared = asset.Shared,
-          Title = asset.Title,
-          Description = asset.Description,
-          Steps = asset.Steps,
-          ImageUrl = asset.ImageUrl,
-          CookTime = asset.CookTime,
-          PrepTime = asset.PrepTime,
-          DishType = asset.DishType,
-          MainIngredient = asset.MainIngredient,
-          Seasons = asset.Seasons,
-          Name = asset.Patron.FirstName + ' ' + asset.Patron.LastName,
-          Ingredients = asset.Ingredients,
-          Reviews = asset.Reviews
-        });
-    }
+			return GetRecipeList(_context.Recipes
+							.Include(asset => asset.Patron)
+							.Include(asset => asset.Reviews)
+);
+		}
 
-		// View Model: All
-    //private IEnumerable<Recipe> GetAll()
-    //{
-    //  return _context.Recipes
-    //          .Include(asset => asset.Patron)
-    //          .Include(asset => asset.Ingredients)
-    //          .Include(asset => asset.Reviews)
-    //              .ThenInclude(asset => asset.Patron);
-    //}
+		// GET: api/Recipes
+		[HttpGet("email/{id}")]
+		public IEnumerable<RecipeIndexItemModel> GetRecipeByEmail([FromRoute] string id)
+		{
 
-    // GET: api/Recipes/5
-    [HttpGet("{id}")]
-    public async Task<IActionResult> GetRecipe([FromRoute] int id)
-    {
-      if (!ModelState.IsValid)
-      {
-        return BadRequest(ModelState);
-      }
+			return GetRecipes()
+						.Where(asset => asset.Email == id);
+		}
 
-      //var recipe = await _context.Recipes.FindAsync(id);
-      var recipe = await _context.Recipes
-                  .Include(asset => asset.Patron)
-                  .Include(asset => asset.Ingredients)
-                  .Include(asset => asset.Reviews)
-                      .ThenInclude(asset => asset.Patron)
+		// View model: List
+		private IEnumerable<RecipeIndexItemModel> GetRecipeList(IEnumerable<Recipe> assetModels)
+		{
+			return assetModels
+				.Select(asset => new RecipeIndexItemModel
+					{
+						Id = asset.RecipeId,
+						Shared = asset.Shared,
+						Title = asset.Title,
+						Description = asset.Description,
+						ImageUrl = asset.ImageUrl,
+						Email = asset.Patron.Email,
+						CookTime = asset.CookTime,
+						PrepTime = asset.PrepTime
+			});
+		}
+
+		// GET: api/Recipes/5
+		[HttpGet("{id}")]
+		public async Task<IActionResult> GetRecipe([FromRoute] int id)
+		{
+			if (!ModelState.IsValid)
+			{
+				return BadRequest(ModelState);
+			}
+
+			//var recipe = await _context.Recipes.FindAsync(id);
+			var recipe = await _context.Recipes
+									.Include(asset => asset.Patron)
+									.Include(asset => asset.Reviews)
+											.ThenInclude(asset => asset.Patron)
 									.FirstOrDefaultAsync(asset => asset.RecipeId == id);
 
-      if (recipe == null)
+			if (recipe == null)
       {
         return NotFound();
       }
@@ -90,43 +81,39 @@ namespace RecipeDepot.Controller
       return Ok(recipe);
     }
 
-    // PUT: api/Recipes/5
-    [HttpPut("{id}")]
-    public async Task<IActionResult> PutRecipe([FromRoute] int id, [FromBody] Recipe recipe)
+		// PUT: api/Recipes/update/id
+		[HttpPut("update/{id}")]
+		public async Task<IActionResult> PutRecipe([FromRoute] int id, [FromBody] Recipe recipe)
     {
-      if (!ModelState.IsValid)
-      {
-        return BadRequest(ModelState);
-      }
+			if (!ModelState.IsValid)
+				return BadRequest(ModelState);
 
-      if (id != recipe.RecipeId)
-      {
-        return BadRequest();
-      }
+			if (id != recipe.RecipeId)
+				return BadRequest();
 
-      _context.Entry(recipe).State = EntityState.Modified;
+			_context.Entry(recipe).State = EntityState.Modified;
 
-      try
-      {
-        await _context.SaveChangesAsync();
-      }
-      catch (DbUpdateConcurrencyException)
-      {
-        if (!RecipeExists(id))
-        {
-            return NotFound();
-        }
-        else
-        {
-            throw;
-        }
-      }
+			try
+			{
+				await _context.SaveChangesAsync();
+			}
+			catch (DbUpdateConcurrencyException)
+			{
+				if (!RecipeExists(id))
+				{
+					return NotFound();
+				}
+				else
+				{
+					throw;
+				}
+			}
 
-      return NoContent();
+			return NoContent();
     }
 
-    // POST: api/Recipe
-    [HttpPost]
+    // POST: api/Recipes/create
+    [HttpPost("create")]
     public async Task<IActionResult> PostRecipe([FromBody] Recipe recipe)
     {
       if (!ModelState.IsValid)
@@ -134,14 +121,14 @@ namespace RecipeDepot.Controller
           return BadRequest(ModelState);
       }
 
-      _context.Recipes.Add(recipe);
-      await _context.SaveChangesAsync();
+			_context.Recipes.Add(recipe);
+			await _context.SaveChangesAsync();
 
       return CreatedAtAction("GetRecipe", new { id = recipe.RecipeId }, recipe);
     }
 
-    // DELETE: api/Recipe/5
-    [HttpDelete("{id}")]
+    // DELETE: api/Recipes/delete/5
+    [HttpDelete("delete/{id}")]
     public async Task<IActionResult> DeleteRecipe([FromRoute] int id)
     {
       if (!ModelState.IsValid)

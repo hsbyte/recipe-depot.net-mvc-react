@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RecipeDepotData.Migrations
 {
-    public partial class Initialcreation : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,7 +14,7 @@ namespace RecipeDepotData.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Type = table.Column<string>(nullable: false)
+                    Description = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -27,7 +27,7 @@ namespace RecipeDepotData.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Ingredient = table.Column<string>(nullable: false)
+                    Description = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -38,9 +38,19 @@ namespace RecipeDepotData.Migrations
                 name: "Patrons",
                 columns: table => new
                 {
+                    Created = table.Column<DateTime>(type: "Date", nullable: false),
+                    Modified = table.Column<DateTime>(type: "Date", nullable: false),
                     Email = table.Column<string>(maxLength: 50, nullable: false),
-                    FirstName = table.Column<string>(maxLength: 30, nullable: false),
-                    LastName = table.Column<string>(maxLength: 30, nullable: false)
+                    Name = table.Column<string>(maxLength: 50, nullable: false),
+                    AvatarUrl = table.Column<string>(maxLength: 150, nullable: true),
+                    Passwd = table.Column<string>(maxLength: 20, nullable: false),
+                    Bio = table.Column<string>(type: "text", nullable: true),
+                    Active = table.Column<bool>(nullable: false),
+                    Online = table.Column<bool>(nullable: false),
+                    Facebook = table.Column<string>(nullable: true),
+                    Twitter = table.Column<string>(nullable: true),
+                    Pinterest = table.Column<string>(nullable: true),
+                    Instagram = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -61,46 +71,17 @@ namespace RecipeDepotData.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Access",
-                columns: table => new
-                {
-                    Created = table.Column<DateTime>(nullable: false),
-                    Modified = table.Column<DateTime>(nullable: false),
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Email = table.Column<string>(maxLength: 50, nullable: true),
-                    Passwd = table.Column<string>(nullable: false),
-                    Bio = table.Column<string>(type: "text", nullable: true),
-                    Active = table.Column<bool>(nullable: false),
-                    Online = table.Column<bool>(nullable: false),
-                    AvatarUrl = table.Column<string>(nullable: true),
-                    Facebook = table.Column<string>(nullable: true),
-                    Twitter = table.Column<string>(nullable: true),
-                    Pinterest = table.Column<string>(nullable: true),
-                    Instagram = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Access", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Access_Patrons_Email",
-                        column: x => x.Email,
-                        principalTable: "Patrons",
-                        principalColumn: "Email",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Recipes",
                 columns: table => new
                 {
-                    Created = table.Column<DateTime>(nullable: false),
-                    Modified = table.Column<DateTime>(nullable: false),
+                    Created = table.Column<DateTime>(type: "Date", nullable: false),
+                    Modified = table.Column<DateTime>(type: "Date", nullable: false),
                     RecipeId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Shared = table.Column<bool>(nullable: false),
                     Title = table.Column<string>(nullable: false),
                     Description = table.Column<string>(type: "text", nullable: true),
+                    Ingredients = table.Column<string>(type: "text", nullable: true),
                     Steps = table.Column<string>(type: "text", nullable: true),
                     ImageUrl = table.Column<string>(nullable: true),
                     CookTime = table.Column<int>(nullable: false),
@@ -108,61 +89,41 @@ namespace RecipeDepotData.Migrations
                     DishType = table.Column<string>(maxLength: 25, nullable: true),
                     MainIngredient = table.Column<string>(maxLength: 25, nullable: true),
                     Seasons = table.Column<string>(maxLength: 25, nullable: true),
-                    PatronEmail = table.Column<string>(nullable: true)
+                    Email = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Recipes", x => x.RecipeId);
                     table.ForeignKey(
-                        name: "FK_Recipes_Patrons_PatronEmail",
-                        column: x => x.PatronEmail,
+                        name: "FK_Recipes_Patrons_Email",
+                        column: x => x.Email,
                         principalTable: "Patrons",
                         principalColumn: "Email",
                         onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Ingredients",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    RecipeId = table.Column<int>(nullable: false),
-                    Description = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Ingredients", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Ingredients_Recipes_RecipeId",
-                        column: x => x.RecipeId,
-                        principalTable: "Recipes",
-                        principalColumn: "RecipeId",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Reviews",
                 columns: table => new
                 {
-                    Created = table.Column<DateTime>(nullable: false),
-                    Modified = table.Column<DateTime>(nullable: false),
+                    Created = table.Column<DateTime>(type: "Date", nullable: false),
+                    Modified = table.Column<DateTime>(type: "Date", nullable: false),
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     RecipeId = table.Column<int>(nullable: false),
+                    Email = table.Column<string>(nullable: false),
                     Comment = table.Column<string>(type: "text", nullable: true),
-                    Rating = table.Column<int>(nullable: false),
-                    PatronEmail = table.Column<string>(nullable: true)
+                    Rating = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Reviews", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Reviews_Patrons_PatronEmail",
-                        column: x => x.PatronEmail,
+                        name: "FK_Reviews_Patrons_Email",
+                        column: x => x.Email,
                         principalTable: "Patrons",
                         principalColumn: "Email",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Reviews_Recipes_RecipeId",
                         column: x => x.RecipeId,
@@ -172,26 +133,14 @@ namespace RecipeDepotData.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Access_Email",
-                table: "Access",
-                column: "Email",
-                unique: true,
-                filter: "[Email] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Ingredients_RecipeId",
-                table: "Ingredients",
-                column: "RecipeId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Recipes_PatronEmail",
+                name: "IX_Recipes_Email",
                 table: "Recipes",
-                column: "PatronEmail");
+                column: "Email");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Reviews_PatronEmail",
+                name: "IX_Reviews_Email",
                 table: "Reviews",
-                column: "PatronEmail");
+                column: "Email");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Reviews_RecipeId",
@@ -202,13 +151,7 @@ namespace RecipeDepotData.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Access");
-
-            migrationBuilder.DropTable(
                 name: "DishTypes");
-
-            migrationBuilder.DropTable(
-                name: "Ingredients");
 
             migrationBuilder.DropTable(
                 name: "MainIngredients");

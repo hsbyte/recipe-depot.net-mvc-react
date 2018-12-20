@@ -10,8 +10,8 @@ using RecipeDepotData;
 namespace RecipeDepotData.Migrations
 {
     [DbContext(typeof(RecipeDepotContext))]
-    [Migration("20181208031622_Initial update")]
-    partial class Initialupdate
+    [Migration("20181218181028_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,77 +21,18 @@ namespace RecipeDepotData.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("RecipeDepotData.Models.Access", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("Active");
-
-                    b.Property<string>("AvatarUrl");
-
-                    b.Property<string>("Bio")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("Created");
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(50);
-
-                    b.Property<string>("Facebook");
-
-                    b.Property<string>("Instagram");
-
-                    b.Property<DateTime>("Modified");
-
-                    b.Property<bool>("Online");
-
-                    b.Property<string>("Passwd")
-                        .IsRequired();
-
-                    b.Property<string>("Pinterest");
-
-                    b.Property<string>("Twitter");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Email")
-                        .IsUnique()
-                        .HasFilter("[Email] IS NOT NULL");
-
-                    b.ToTable("Access");
-                });
-
             modelBuilder.Entity("RecipeDepotData.Models.DishType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Type")
+                    b.Property<string>("Description")
                         .IsRequired();
 
                     b.HasKey("Id");
 
                     b.ToTable("DishTypes");
-                });
-
-            modelBuilder.Entity("RecipeDepotData.Models.Ingredient", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Description");
-
-                    b.Property<int>("RecipeId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RecipeId");
-
-                    b.ToTable("Ingredients");
                 });
 
             modelBuilder.Entity("RecipeDepotData.Models.MainIngredient", b =>
@@ -100,7 +41,7 @@ namespace RecipeDepotData.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Ingredient")
+                    b.Property<string>("Description")
                         .IsRequired();
 
                     b.HasKey("Id");
@@ -114,13 +55,37 @@ namespace RecipeDepotData.Migrations
                         .ValueGeneratedOnAdd()
                         .HasMaxLength(50);
 
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(30);
+                    b.Property<bool>("Active");
 
-                    b.Property<string>("LastName")
+                    b.Property<string>("AvatarUrl")
+                        .HasMaxLength(150);
+
+                    b.Property<string>("Bio")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("Date");
+
+                    b.Property<string>("Facebook");
+
+                    b.Property<string>("Instagram");
+
+                    b.Property<DateTime>("Modified")
+                        .HasColumnType("Date");
+
+                    b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(30);
+                        .HasMaxLength(50);
+
+                    b.Property<bool>("Online");
+
+                    b.Property<string>("Passwd")
+                        .IsRequired()
+                        .HasMaxLength(20);
+
+                    b.Property<string>("Pinterest");
+
+                    b.Property<string>("Twitter");
 
                     b.HasKey("Email");
 
@@ -135,7 +100,8 @@ namespace RecipeDepotData.Migrations
 
                     b.Property<int>("CookTime");
 
-                    b.Property<DateTime>("Created");
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("Date");
 
                     b.Property<string>("Description")
                         .HasColumnType("text");
@@ -143,14 +109,18 @@ namespace RecipeDepotData.Migrations
                     b.Property<string>("DishType")
                         .HasMaxLength(25);
 
+                    b.Property<string>("Email");
+
                     b.Property<string>("ImageUrl");
+
+                    b.Property<string>("Ingredients")
+                        .HasColumnType("text");
 
                     b.Property<string>("MainIngredient")
                         .HasMaxLength(25);
 
-                    b.Property<DateTime>("Modified");
-
-                    b.Property<string>("PatronEmail");
+                    b.Property<DateTime>("Modified")
+                        .HasColumnType("Date");
 
                     b.Property<int>("PrepTime");
 
@@ -167,7 +137,7 @@ namespace RecipeDepotData.Migrations
 
                     b.HasKey("RecipeId");
 
-                    b.HasIndex("PatronEmail");
+                    b.HasIndex("Email");
 
                     b.ToTable("Recipes");
                 });
@@ -181,12 +151,14 @@ namespace RecipeDepotData.Migrations
                     b.Property<string>("Comment")
                         .HasColumnType("text");
 
-                    b.Property<DateTime>("Created");
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("Date");
 
                     b.Property<string>("Email")
                         .IsRequired();
 
-                    b.Property<DateTime>("Modified");
+                    b.Property<DateTime>("Modified")
+                        .HasColumnType("Date");
 
                     b.Property<int>("Rating");
 
@@ -215,26 +187,11 @@ namespace RecipeDepotData.Migrations
                     b.ToTable("Seasons");
                 });
 
-            modelBuilder.Entity("RecipeDepotData.Models.Access", b =>
-                {
-                    b.HasOne("RecipeDepotData.Models.Patron")
-                        .WithOne("Access")
-                        .HasForeignKey("RecipeDepotData.Models.Access", "Email");
-                });
-
-            modelBuilder.Entity("RecipeDepotData.Models.Ingredient", b =>
-                {
-                    b.HasOne("RecipeDepotData.Models.Recipe")
-                        .WithMany("Ingredients")
-                        .HasForeignKey("RecipeId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("RecipeDepotData.Models.Recipe", b =>
                 {
                     b.HasOne("RecipeDepotData.Models.Patron", "Patron")
                         .WithMany()
-                        .HasForeignKey("PatronEmail");
+                        .HasForeignKey("Email");
                 });
 
             modelBuilder.Entity("RecipeDepotData.Models.Review", b =>

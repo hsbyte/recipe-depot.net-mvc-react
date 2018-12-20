@@ -24,6 +24,6 @@ namespace RecipeDepotData.Models
     [Range(0, 5)]
     public int Rating { get; set; }
 
-    public Patron Patron { get; set; }
+    public virtual Patron Patron { get; set; }
   }
 }

@@ -1,0 +1,9 @@
+﻿.Footer {
+	background-color: rgba(0,0,0,.8);
+	color: white;
+	text-align: center;
+	padding: 20px 0;
+	bottom: 0;
+	position: sticky;
+	width: 100%;
+}

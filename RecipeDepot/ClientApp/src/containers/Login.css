@@ -1,0 +1,17 @@
+﻿.Login {
+
+}
+	.Login .join-for-free {
+		width: 100%;
+		line-height: 50px;
+		display: block;
+		background: var(--varden);
+		margin-top: 5px;
+		color: green;
+	}
+	.Login .sub-text {
+		width: 100%;
+		text-align: center;
+		margin: 15px 0 15px;
+		font-size: 14px;
+	}

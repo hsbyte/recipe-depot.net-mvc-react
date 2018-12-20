@@ -1,0 +1,61 @@
+﻿.wrapper {
+	background-color: rgba(255,255,255,.9);
+	padding: 30px;
+	width: 100%;
+	min-height: 60vh;
+}
+	.RecipeBoard .col-padding {
+			padding: 5px;
+		}
+	.RecipeBoard .img-thumbnail {
+		padding: 0;
+		box-shadow: none;
+	}
+	.RecipeBoard .action {
+		cursor: pointer;
+	}
+	.RecipeBoard .no-recipes {
+		width: 100%;
+		text-align: center;
+		padding: 150px 0;
+	}
+
+
+.link-container {
+	position: relative;
+	width: 100%;
+}
+	.link-container a {
+		color: yellow;
+	}
+		.link-container a:hover {
+			color: white;
+		}
+	.link-container:hover .overlay {
+		opacity: 1;
+		height: 50px;
+	}
+	.link-container:hover img {
+		filter: grayscale(100%) drop-shadow(0 10px 0.75rem #808080);
+	}
+
+
+.overlay {
+	position: absolute;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.5);
+	width: 100%;
+	transition: .5s ease;
+	opacity: 0;
+	color: white;
+	font-size: 20px;
+	padding: 10px 0;
+	text-align: center;
+	height: 0;
+}
+	.overlay ul {
+		list-style: none;
+		padding: 0;
+		display: flex;
+		justify-content: space-evenly;
+	}

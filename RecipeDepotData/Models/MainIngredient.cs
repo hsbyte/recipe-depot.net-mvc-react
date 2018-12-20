@@ -7,6 +7,6 @@ namespace RecipeDepotData.Models
         public int Id { get; private set; }
 
         [Required]
-        public string Ingredient { get; set; }
+        public string Description { get; set; }
     }
 }

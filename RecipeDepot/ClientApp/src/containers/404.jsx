@@ -4,5 +4,7 @@ import "./404.css";
 
 export default () =>
 	<div className="NotFound">
-		<h3>Sorry, page not found!</h3>
-	</div>;
+		<div>
+			<h1>Sorry, page still a work in progress!</h1>
+		</div>
+	</div>

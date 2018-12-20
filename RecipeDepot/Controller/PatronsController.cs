@@ -25,11 +25,10 @@ namespace RecipeDepot.Controller
     [HttpGet]
     public IEnumerable<Patron> GetPatrons()
     {
-      return _context.Patrons
-							.Include(asset => asset.Access);
+      return _context.Patrons;
     }
 
-    // GET: api/Patrons/5
+    // GET: api/Patrons/{email}
     [HttpGet("{id}")]
     public async Task<IActionResult> GetPatron([FromRoute] string id)
     {
@@ -38,12 +37,9 @@ namespace RecipeDepot.Controller
           return BadRequest(ModelState);
       }
 
-			//var patron = await _context.Patrons.FindAsync(id);
-			var patron = await _context.Patrons
-									.Include(asset => asset.Access)
-									.FirstOrDefaultAsync(asset => asset.Email == id);
+			var patron = await _context.Patrons.FindAsync(id);
 
-      if (patron == null)
+			if (patron == null)
       {
           return NotFound();
       }
@@ -51,8 +47,8 @@ namespace RecipeDepot.Controller
       return Ok(patron);
     }
 
-    // PUT: api/Patrons/5
-    [HttpPut("{id}")]
+    // PUT: api/Patrons/update/{email}
+    [HttpPut("update/{id}")]
     public async Task<IActionResult> PutPatron([FromRoute] string id, [FromBody] Patron patron)
     {
       if (!ModelState.IsValid)
@@ -86,23 +82,23 @@ namespace RecipeDepot.Controller
       return NoContent();
     }
 
-    // POST: api/Patrons
-    [HttpPost]
+    // POST: api/Patrons/create
+    [HttpPost("create")]
     public async Task<IActionResult> PostPatron([FromBody] Patron patron)
     {
-      if (!ModelState.IsValid)
-      {
-        return BadRequest(ModelState);
-      }
+			if (!ModelState.IsValid)
+			{
+				return BadRequest(ModelState);
+			}
 
-      _context.Patrons.Add(patron);
-      await _context.SaveChangesAsync();
+			_context.Patrons.Add(patron);
+			await _context.SaveChangesAsync();
 
-      return CreatedAtAction("GetPatron", new { id = patron.Email }, patron);
-    }
+			return CreatedAtAction("GetPatron", new { id = patron.Email }, patron);
+		}
 
-    // DELETE: api/Patrons/5
-    [HttpDelete("{id}")]
+    // DELETE: api/Patrons/delete/{email}
+    [HttpDelete("delete/{id}")]
     public async Task<IActionResult> DeletePatron([FromRoute] string id)
     {
       if (!ModelState.IsValid)
