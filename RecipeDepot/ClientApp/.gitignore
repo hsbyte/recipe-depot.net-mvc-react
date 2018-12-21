@@ -23,4 +23,4 @@ yarn-error.log*
 README.md
 
 # catalog
-/public/img/catalog
+/public/img/*.*
