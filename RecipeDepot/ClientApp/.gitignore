@@ -22,5 +22,6 @@ yarn-error.log*
 
 README.md
 
-# catalog
-/public/img/*.*
+# catalog &. patrons
+/public/img/catalog/*.*
+/public/img/patrons/*.*
