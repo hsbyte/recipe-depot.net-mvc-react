@@ -108,7 +108,7 @@ Client view components.
 ~~~
 **`[web-url]/api/Recipes`** -> JSON format GET request for all recipes.
 
-**`[web-url]/api/Recipes/`** -> JSON format GET request for a specific recipe.
+**`[web-url]/api/Recipes/{id}`** -> JSON format GET request for a specific recipe.
 
 ...and more
 ~~~
