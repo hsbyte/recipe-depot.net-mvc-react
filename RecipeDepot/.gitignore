@@ -232,3 +232,6 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+
+RecipeDepot/ClientApp/src/App.test.js
+

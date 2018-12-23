@@ -10,8 +10,8 @@ using RecipeDepotData;
 namespace RecipeDepotData.Migrations
 {
     [DbContext(typeof(RecipeDepotContext))]
-    [Migration("20181218181028_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20181223005735_initCreate")]
+    partial class initCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
