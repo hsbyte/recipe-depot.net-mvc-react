@@ -1,0 +1,23 @@
+version: "3"
+services:
+  db:
+    image: "microsoft/mssql-server-linux:latest"
+    container_name: "recipe-db"
+    environment:
+      SA_PASSWORD: "<YOUR-PASSWORD>"
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: "Express"
+    ports:
+      - "1433:1433"
+  webapp:
+    image: "hsbyte/recipedepot:1.0.0"
+    container_name: "recipedepot"
+    depends_on:
+      - db
+    build:
+      context: ./RecipeDepot
+      dockerfile: Dockerfile
+    ports:
+      - "5000:80"
+
+

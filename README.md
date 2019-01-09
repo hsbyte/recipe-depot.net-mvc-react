@@ -40,7 +40,7 @@ Main application library.
 
 Add reference to `RecipeDepotData` library.
 
-Add `ConnectionStrings` to cennect to DB
+Add `ConnectionStrings` to connect to DB
 >`appsettings.json`
 >```json
 >  "ConnectionStrings": {
