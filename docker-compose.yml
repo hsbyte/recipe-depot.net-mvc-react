@@ -1,10 +1,10 @@
 version: "3"
 services:
   db:
-    image: "microsoft/mssql-server-linux:latest"
+    image: "hsbyte/recipde-db"
     container_name: "recipe-db"
     environment:
-      SA_PASSWORD: "<YOUR-PASSWORD>"
+      SA_PASSWORD: "YOUR-PASSWORD"
       ACCEPT_EULA: "Y"
       MSSQL_PID: "Express"
     ports:
@@ -19,5 +19,3 @@ services:
       dockerfile: Dockerfile
     ports:
       - "5000:80"
-
-
