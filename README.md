@@ -125,9 +125,9 @@ Client view components.
 
 #### <span style="color:green">HTTP RESTful services and endpoints</span>
 ~~~
-**`[web-url]/api/Recipes`** -> JSON format GET request for all recipes.
+`[web-url]/api/Recipes` -> JSON format GET request for all recipes.
 
-**`[web-url]/api/Recipes/{recipeId}`** -> JSON format GET request for a specific recipe.
+`[web-url]/api/Recipes/{recipeId}` -> JSON format GET request for a specific recipe.
 
 ...and more
 ~~~
