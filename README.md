@@ -132,4 +132,10 @@ Client view components.
 ...and more
 ~~~
 
+### Docker Images
+>```bash
+>registry.gitlab.com/hsbyte/recipe-depot.net-mvc-react/recipe-db
+>registry.gitlab.com/hsbyte/recipe-depot.net-mvc-react/recipedepot
+>```
+
 **Note**: *Shown are postings of dummy recipes, images and information for demonstration purpose. Database file and food images are not included in this repo. To build the database, use the RecipeDepotData code-first EF.*
