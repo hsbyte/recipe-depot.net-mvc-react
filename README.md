@@ -118,10 +118,10 @@ Client view components.
 
 #### Screenshots
 
-![](https://github.com/hsbyte/recipe-depot.net-mvc-react/blob/master/.md/view-screenshot.jpg)
+![](.md/view-screenshot.jpg)
 
 
-![](https://github.com/hsbyte/recipe-depot.net-mvc-react/blob/master/.md/view-screenshot-1.jpg)
+![](.md/view-screenshot-1.jpg)
 
 #### <span style="color:green">HTTP RESTful services and endpoints</span>
 ~~~
